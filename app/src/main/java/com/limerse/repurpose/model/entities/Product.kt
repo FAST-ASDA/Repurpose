@@ -1,14 +1,5 @@
-
-/**
- *
- */
 package com.limerse.repurpose.model.entities
 
-/**
- * The Class Product used as model for Products.
- *
- * @author Hitesh
- */
 class Product(
     itemName: String, itemShortDesc: String, itemDetail: String,
     MRP: String, discount: String, sellMRP: String, quantity: String,

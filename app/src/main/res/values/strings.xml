@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Repurpose</string>
     <string name="action_settings">Settings</string>
     <string name="empty_text">Select song from below to play</string>
@@ -11,7 +11,7 @@
     <string name="action_anchor_enable">Enable Anchor Point</string>
     <string name="action_anchor_disable">Disable Anchor Point</string>
     <string name="idle">Idle</string>
-    <string name="crash_toast_text">Oops Crashe Occurred</string>
+    <string name="crash_toast_text">Oops Crash Occurred</string>
     <string name="offer_banner">"Shop for 2000 to get Rs 100 discount and shop for 3000 to get Rs 200 discount"</string>
     <string name="checkout">CheckOut</string>
     <string name="similar_product">You may also like</string>
@@ -24,5 +24,4 @@
     <string name="mob_num">8178215331</string>
     <string name="lab_locations">Delhi Technological University, DTU, New Delhi, India</string>
     <string name="delhi">Delhi</string>
-
 </resources>

@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.view.fragment
 
 import android.content.ActivityNotFoundException
@@ -20,20 +19,10 @@ import com.limerse.repurpose.util.Utils.AnimationType
 import com.limerse.repurpose.util.Utils.switchContent
 import com.limerse.repurpose.view.activities.ECartHomeActivity
 
-// TODO: Auto-generated Javadoc
-/**
- * Fragment that appears in the "content_frame", shows a animal.
- */
-class ContactUsFragment
-/**
- * Instantiates a new settings fragment.
- */
-    : Fragment() {
+class ContactUsFragment : Fragment() {
     private var mToolbar: Toolbar? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(
             R.layout.frag_about, container,
             false
@@ -75,7 +64,7 @@ class ContactUsFragment
         rootView.findViewById<View>(R.id.site_dev).setOnClickListener {
             val browserIntent = Intent(
                 Intent.ACTION_VIEW,
-                Uri.parse("http://hiteshsahu.com/")
+                Uri.parse("https://limerse.com/")
             )
             startActivity(browserIntent)
         }
@@ -86,7 +75,7 @@ class ContactUsFragment
             emailIntent.type = "text/plain"
             emailIntent
                 .putExtra(
-                    Intent.EXTRA_EMAIL, arrayOf("hiteshkrsahu@gmail.com")
+                    Intent.EXTRA_EMAIL, arrayOf("tiwariakshat03@gmail.com")
                 )
             emailIntent.putExtra(
                 Intent.EXTRA_SUBJECT,
@@ -113,12 +102,5 @@ class ContactUsFragment
             }
         }
         return rootView
-    }
-
-    companion object {
-        fun newInstance(): Fragment {
-            // TODO Auto-generated method stub
-            return ContactUsFragment()
-        }
     }
 }

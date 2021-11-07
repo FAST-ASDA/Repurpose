@@ -22,9 +22,7 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import java.math.BigDecimal
 
-/**
- * @author Hitesh Sahu (hiteshsahu.com)
- */
+
 class SimilarProductsPagerAdapter(
     /**
      * The m context.

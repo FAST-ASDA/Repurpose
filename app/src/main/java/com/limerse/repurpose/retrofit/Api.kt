@@ -2,6 +2,7 @@ package com.limerse.repurpose.retrofit
 
 import com.limerse.repurpose.model.*
 import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -26,6 +27,10 @@ interface Api {
     @FormUrlEncoded
     @PUT("/api/v1/accounts/user-details/")
     fun updatePhone(@Field("phone") phone: String): Call<User>
+
+    //Stripe Intent
+    @POST
+    fun stripeIntent(@Url url: String): Call<ResponseBody>
 
     //Update Photo
     @Multipart

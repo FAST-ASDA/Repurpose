@@ -7,9 +7,7 @@ package com.limerse.repurpose.util
 import android.content.Context
 import android.preference.PreferenceManager
 
-/**
- * @author Hitesh
- */
+
 class PreferenceHelper private constructor() {
     fun setBoolean(appContext: Context?, key: String?, value: Boolean?) {
         PreferenceManager.getDefaultSharedPreferences(appContext).edit()

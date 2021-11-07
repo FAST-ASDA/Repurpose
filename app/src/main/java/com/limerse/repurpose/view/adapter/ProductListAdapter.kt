@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.view.adapter
 
 import android.content.Context
@@ -26,9 +25,6 @@ import java.math.BigDecimal
 import java.util.*
 import kotlin.collections.ArrayList
 
-/**
- * @author Hitesh Sahu (hiteshsahu.com)
- */
 class ProductListAdapter(
     subcategoryKey: String?, context: Context,
     isCartlist: Boolean

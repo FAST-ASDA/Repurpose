@@ -1,12 +1,5 @@
-
-/**
- *
- */
 package com.limerse.repurpose.model.entities
 
-/**
- * @author Hitesh
- */
 class ProductCategoryModel
 /**
  * @param productCategoryName

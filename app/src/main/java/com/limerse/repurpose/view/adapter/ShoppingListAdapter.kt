@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.view.adapter
 
 import android.content.Context
@@ -33,13 +32,6 @@ import com.limerse.repurpose.view.fragment.MyCartFragment
 import java.math.BigDecimal
 import java.util.*
 
-/**
- * Simple RecyclerView.Adapter that implements [ItemTouchHelperAdapter] to
- * respond to move and dismiss events from a
- * [android.support.v7.widget.helper.ItemTouchHelper].
- *
- * @author Hitesh Sahu (hiteshsahu.com)
- */
 class ShoppingListAdapter(
     private val context: Context,
     private val mDragStartListener: OnStartDragListener

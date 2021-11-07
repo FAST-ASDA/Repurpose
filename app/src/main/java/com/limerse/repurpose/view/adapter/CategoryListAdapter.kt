@@ -18,9 +18,7 @@ import com.limerse.repurpose.view.customview.TextDrawable
 import com.limerse.repurpose.view.customview.TextDrawable.IBuilder
 import java.util.*
 
-/**
- * @author Hitesh Sahu (hiteshsahu.com)
- */
+
 class CategoryListAdapter(context: Context) :
     RecyclerView.Adapter<CategoryListAdapter.VersionViewHolder>() {
     var clickListener: OnItemClickListener? = null
