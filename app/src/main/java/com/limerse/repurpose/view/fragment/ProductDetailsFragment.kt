@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.view.fragment
 
 import android.graphics.Color
@@ -10,7 +9,6 @@ import android.view.*
 import android.widget.*
 import android.widget.TextView.BufferType
 import androidx.appcompat.widget.Toolbar
-import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.limerse.repurpose.R
 import com.limerse.repurpose.model.CenterRepository.Companion.centerRepository
@@ -29,10 +27,7 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import java.math.BigDecimal
 
-class ProductDetailsFragment(
-    private val subcategoryKey: String?, private var productListNumber: Int,
-    private val isFromCart: Boolean
-) : Fragment() {
+class ProductDetailsFragment(private val subcategoryKey: String?, private var productListNumber: Int, private val isFromCart: Boolean) : Fragment() {
     private var itemImage: ImageView? = null
     private var itemSellPrice: TextView? = null
     private var itemName: TextView? = null
@@ -44,14 +39,9 @@ class ProductDetailsFragment(
     private var similarProductsPager: ClickableViewPager? = null
     private var topSellingPager: ClickableViewPager? = null
     private var mToolbar: Toolbar? = null
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(
-            R.layout.frag_product_detail,
-            container, false
-        )
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val rootView = inflater.inflate(R.layout.frag_product_detail, container, false)
         mToolbar = rootView.findViewById<View>(R.id.htab_toolbar) as Toolbar
         if (mToolbar != null) {
             (activity as ECartHomeActivity?)!!.setSupportActionBar(mToolbar)
@@ -62,7 +52,12 @@ class ProductDetailsFragment(
         }
         mToolbar!!.setTitleTextColor(Color.WHITE)
         mToolbar!!.setNavigationOnClickListener {
-            (activity as ECartHomeActivity?)!!.getmDrawerLayout()!!.openDrawer(GravityCompat.START)
+            Utils.switchFragmentWithAnimation(
+                R.id.frag_container,
+                SellerProfileFragment(),
+                (context as ECartHomeActivity?)!!, null,
+                AnimationType.SLIDE_LEFT
+            )
         }
         (activity as ECartHomeActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         similarProductsPager = rootView
@@ -77,6 +72,15 @@ class ProductDetailsFragment(
             .findViewById<View>(R.id.product_description) as TextView)
         itemImage = rootView.findViewById<View>(R.id.product_image) as ImageView
         fillProductData()
+        rootView.findViewById<View>(R.id.okay).setOnClickListener {
+            Utils.switchFragmentWithAnimation(
+                R.id.frag_container,
+                SellerProfileFragment(),
+                (context as ECartHomeActivity?)!!, null,
+                AnimationType.SLIDE_LEFT
+            )
+        }
+
         rootView.findViewById<View>(R.id.add_item).setOnClickListener {
             if (isFromCart) {
 
@@ -152,12 +156,7 @@ class ProductDetailsFragment(
                     quanitity!!.text = tempObj.quantity
                     centerRepository!!.listOfProductsInShoppingList.add(tempObj)
                     (context as ECartHomeActivity?)!!.updateCheckOutAmount(
-                        BigDecimal.valueOf(
-                            java.lang.Long
-                                .valueOf(
-                                    centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!!.get(productListNumber)!!.sellMRP
-                                )
-                        ), true
+                        BigDecimal.valueOf(java.lang.Long.valueOf(centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!!.get(productListNumber)!!.sellMRP)), true
                     )
                 }
                 vibrate((context)!!)

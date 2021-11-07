@@ -78,7 +78,7 @@ class SplashActivity : AppCompatActivity() {
 
             RetrofitClient(null).instance
                 .login(result.signInAccount?.displayName!!,
-                    result.signInAccount?.familyName!!,
+                    result.signInAccount?.displayName!!,
                     result.signInAccount?.email!!,
                     result.signInAccount!!.idToken!!
                 )
