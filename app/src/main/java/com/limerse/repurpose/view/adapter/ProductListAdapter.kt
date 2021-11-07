@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.Spannable
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,41 +26,23 @@ import java.math.BigDecimal
 import java.util.*
 import kotlin.collections.ArrayList
 
-class ProductListAdapter(
-    subcategoryKey: String?, context: Context,
-    isCartlist: Boolean
-) : RecyclerView.Adapter<ProductListAdapter.VersionViewHolder>(), ItemTouchHelperAdapter {
-    private val mColorGenerator = ColorGenerator.MATERIAL
+class ProductListAdapter(subcategoryKey: String?, context: Context, isCartlist: Boolean) : RecyclerView.Adapter<ProductListAdapter.VersionViewHolder>(), ItemTouchHelperAdapter {
     private var mDrawableBuilder: IBuilder? = null
-    private var drawable: TextDrawable? = null
     private var ImageUrl: String? = null
     private var productList: MutableList<Product?>? = ArrayList()
     private var clickListener: OnItemClickListener? = null
     private val context: Context
-    override fun onCreateViewHolder(
-        viewGroup: ViewGroup,
-        i: Int
-    ): VersionViewHolder {
-        val view = LayoutInflater.from(viewGroup.context).inflate(
-            R.layout.item_product_list, viewGroup, false
-        )
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): VersionViewHolder {
+        val view = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_product_list, viewGroup, false)
         return VersionViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        holder: VersionViewHolder,
-        position: Int
-    ) {
+    override fun onBindViewHolder(holder: VersionViewHolder, position: Int) {
         holder.itemName.text = productList!![position]!!.itemName
         holder.itemDesc.text = productList!![position]!!.itemShortDesc
         val sellCostString = (rupees(
-            BigDecimal.valueOf(
-                java.lang.Long.valueOf(
-                    productList!![position]!!.sellMRP
-                )
-            )
-        ).toString()
-                + "  ")
+            BigDecimal.valueOf(java.lang.Long.valueOf(productList!![position]!!.sellMRP))
+        ).toString() + "  ")
         val buyMRP = rupees(
             BigDecimal.valueOf(
                 java.lang.Long.valueOf(
@@ -76,12 +59,9 @@ class ProductListAdapter(
         )
         mDrawableBuilder = TextDrawable.builder().beginConfig().withBorder(4)
             .endConfig().roundRect(10)
-        drawable = mDrawableBuilder!!.build(
-            productList!!.get(position)!!.itemName[0].toString(), mColorGenerator!!.getColor(productList!![position]!!.itemName)
-        )
         ImageUrl = productList!![position]!!.imageURL
-        Glide.with(context).load(ImageUrl).placeholder(drawable)
-            .error(drawable)
+        Log.d("coolMan",ImageUrl!!)
+        Glide.with(context).load(ImageUrl)
             .centerCrop().into(holder.imagView)
         holder.addItem.findViewById<View>(R.id.add_item).setOnClickListener { //current object
             val tempObj = productList!![position]
@@ -172,14 +152,11 @@ class ProductListAdapter(
                             centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList].quantity
                         ) == 0
                     ) {
-                        centerRepository!!.listOfProductsInShoppingList
-                            .removeAt(indexOfTempInShopingList)
+                        centerRepository!!.listOfProductsInShoppingList.removeAt(indexOfTempInShopingList)
                         notifyDataSetChanged()
-                        getContext()
-                            .updateItemCount(false)
+                        getContext().updateItemCount(false)
                     }
                 }
-            } else {
             }
         }
     }

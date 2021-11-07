@@ -143,7 +143,7 @@
         <com.limerse.repurpose.view.customview.ClickableViewPager
             android:id="@+id/similar_products_pager"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="380dp"
             android:layout_marginTop="2dp"
             android:visibility="visible" />
 
@@ -161,13 +161,12 @@
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
             android:text="Top Selling"
-
             android:textSize="20sp" />
 
         <com.limerse.repurpose.view.customview.ClickableViewPager
             android:id="@+id/top_selleing_pager"
             android:layout_width="match_parent"
-            android:layout_height="280dp"
+            android:layout_height="380dp"
             android:layout_marginTop="2dp"
             android:visibility="visible" />
     </LinearLayout>

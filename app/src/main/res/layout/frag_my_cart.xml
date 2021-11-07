@@ -3,7 +3,6 @@
     android:id="@+id/dummyfrag_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     android:orientation="vertical">
 
     <RelativeLayout
@@ -84,7 +83,6 @@
                     android:scrollHorizontally="true"
                     android:singleLine="true"
                     android:text="Your cart is Empty"
-
                     android:textSize="25sp" />
 
                 <TextView

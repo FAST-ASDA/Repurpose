@@ -22,7 +22,7 @@ class ProductCategoryModel
     /**
      * @param productUrl the productUrl to set
      */
-    var productCategoryImageUrl: String
+    var productCategoryImageUrl: Any
 ) {
     /**
      * @return the idproductcategory

@@ -31,10 +31,7 @@ class HomeFragment : Fragment() {
     private var doubleBackToExitPressedOnce = false
     private val mRunnable = Runnable { doubleBackToExitPressedOnce = false }
     private val mHandler = Handler()
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.frag_product_category, container, false)
         view.findViewById<View>(R.id.search_item).setOnClickListener {
             switchFragmentWithAnimation(
@@ -82,10 +79,7 @@ class HomeFragment : Fragment() {
 
         recyclerView = view.findViewById<View>(R.id.scrollableview) as RecyclerView
         recyclerView!!.setHasFixedSize(true)
-        val linearLayoutManager = LinearLayoutManager(
-            activity
-        )
-        recyclerView!!.layoutManager = linearLayoutManager
+        recyclerView!!.layoutManager = LinearLayoutManager(activity)
         ProductCategoryLoaderTask(recyclerView, requireActivity()).execute()
 
         view.isFocusableInTouchMode = true

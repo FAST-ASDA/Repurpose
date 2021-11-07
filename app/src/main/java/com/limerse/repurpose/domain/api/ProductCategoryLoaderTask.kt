@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.domain.api
 
 import android.content.Context
@@ -14,13 +13,7 @@ import com.limerse.repurpose.view.activities.ECartHomeActivity
 import com.limerse.repurpose.view.adapter.CategoryListAdapter
 import com.limerse.repurpose.view.fragment.ProductOverviewFragment
 
-/**
- * The Class ImageLoaderTask.
- */
-class ProductCategoryLoaderTask(
-    private val recyclerView: RecyclerView?,
-    private val context: Context
-) : AsyncTask<String?, Void?, Void?>() {
+class ProductCategoryLoaderTask(private val recyclerView: RecyclerView?, private val context: Context) : AsyncTask<String?, Void?, Void?>() {
     override fun onPreExecute() {
         super.onPreExecute()
         if (null != (context as ECartHomeActivity).progressBar){
@@ -30,15 +23,13 @@ class ProductCategoryLoaderTask(
 
     override fun onPostExecute(result: Void?) {
         super.onPostExecute(result)
-        if (null != (context as ECartHomeActivity).progressBar) context.progressBar!!.visibility =
-            View.GONE
+        if (null != (context as ECartHomeActivity).progressBar){
+            context.progressBar!!.visibility = View.GONE
+        }
         if (recyclerView != null) {
-            val simpleRecyclerAdapter = CategoryListAdapter(
-                context
-            )
+            val simpleRecyclerAdapter = CategoryListAdapter(context)
             recyclerView.adapter = simpleRecyclerAdapter
-            simpleRecyclerAdapter
-                .SetOnItemClickListener(object: CategoryListAdapter.OnItemClickListener {
+            simpleRecyclerAdapter.SetOnItemClickListener(object: CategoryListAdapter.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
                         AppConstants.CURRENT_CATEGORY = position
                         Utils.switchFragmentWithAnimation(

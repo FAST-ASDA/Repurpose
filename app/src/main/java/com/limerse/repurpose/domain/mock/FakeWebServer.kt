@@ -1,14 +1,12 @@
 package com.limerse.repurpose.domain.mock
 
+import com.limerse.repurpose.R
 import com.limerse.repurpose.model.CenterRepository
 import com.limerse.repurpose.model.entities.Product
 import com.limerse.repurpose.model.entities.ProductCategoryModel
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
-/*
- * This class serve as fake server and provides dummy product and category with real Image Urls taken from flipkart
- */
 class FakeWebServer {
     fun initiateFakeServer() {
         addCategory()
@@ -19,26 +17,32 @@ class FakeWebServer {
         listOfCategory
             .add(
                 ProductCategoryModel(
-                    "Fashion",
-                    "Fashion Items",
-                    "10%",
-                    "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80"
+                    "Latest Arrivals",
+                    "Grad the latest deals on the Zara collection!",
+                    "40%",
+                    R.drawable.girls
                 )
             )
         listOfCategory
             .add(
                 ProductCategoryModel(
-                    "Influences",
-                    "Influencers",
-                    "15%",
-                    "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1740&q=80"
+                    "Thrifting Specials",
+                    "Connect with your neighbouring friends and thrift!",
+                    "25%",
+                    R.drawable.hanger
+                )
+            )
+        listOfCategory
+            .add(
+                ProductCategoryModel(
+                    "Social Connections",
+                    "Follow the trendy thrifters in your area!",
+                    "35%",
+                    R.drawable.family
                 )
             )
         CenterRepository.centerRepository!!.listOfCategory = listOfCategory
     }
-    // Ovens
-
-    // TV
 
     // Vaccum Cleaner
     val allElectronics: Unit
@@ -117,7 +121,7 @@ class FakeWebServer {
                         "oven_5"
                     )
                 )
-            productMap["Microwave oven"] = productlist
+            productMap["Skirts"] = productlist
             val tvList = mutableListOf<Product?>()
 
             // TV
@@ -263,9 +267,6 @@ class FakeWebServer {
             productMap["Vaccum Cleaner"] = productlist
             CenterRepository.centerRepository!!.setMapOfProductsInCategory(productMap)
         }
-    // Table
-
-    // Chair
 
     // Chair
     val allFurnitures: Unit
@@ -576,7 +577,6 @@ class FakeWebServer {
                         "almirah_6"
                     )
                 )
-            productMap["Almirah"] = productlist
             productMap["Almirah"] = productlist
             CenterRepository.centerRepository!!.setMapOfProductsInCategory(productMap)
         }

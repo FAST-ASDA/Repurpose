@@ -108,8 +108,7 @@ class SimilarProductsPagerAdapter(
             )
         ).toString()
         val label = LabelView(mContext)
-        label.text =
-            centerRepository!!.getMapOfProductsInCategory()[productCategory]!![position]!!.getDiscount()
+        label.text = centerRepository!!.getMapOfProductsInCategory()[productCategory]!![position]!!.getDiscount()
         label.setBackgroundColor(-0x16e19d)
         label.setTargetView(
             itemView.findViewById(R.id.imageView), 10,

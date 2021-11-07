@@ -63,5 +63,6 @@
     <color name="waveform_unselected">#535353</color>
     <color name="playback_indicator">#ffff66</color>
     <color name="grid_line">#6D6D6D</color>
+    <color name="light_black">#1a1a1a</color>
 
 </resources>

@@ -1,9 +1,7 @@
 package com.limerse.repurpose.view.activities
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.limerse.repurpose.R
 import com.limerse.repurpose.domain.PaymentSheetViewModel
-import com.limerse.repurpose.domain.helper.Connectivity.isConnected
 import com.limerse.repurpose.model.CenterRepository.Companion.centerRepository
 import com.limerse.repurpose.model.entities.Money.Companion.rupees
 import com.limerse.repurpose.model.entities.Product
@@ -185,28 +182,11 @@ class ECartHomeActivity : AppCompatActivity() {
         )
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        // Show Offline Error Message
-        if (!isConnected(applicationContext)) {
-            val dialog = Dialog(this@ECartHomeActivity)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setContentView(R.layout.connection_dialog)
-            val dialogButton = dialog
-                .findViewById<View>(R.id.dialogButtonOK) as Button
-
-            // if button is clicked, close the custom dialog
-            dialogButton.setOnClickListener { dialog.dismiss() }
-            dialog.show()
-        }
-    }
-
     /*
      * Toggles Between Offer Banner and Checkout Amount. If Cart is Empty SHow
      * Banner else display total amount and item count
      */
-    fun toggleBannerVisibility() {
+    private fun toggleBannerVisibility() {
         if (itemCount == 0) {
             findViewById<View>(R.id.checkout_item_root).visibility = View.GONE
             findViewById<View>(R.id.new_offers_banner).visibility = View.VISIBLE

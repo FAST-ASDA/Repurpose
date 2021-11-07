@@ -6,9 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import java.util.*
 
-class ProductsInCategoryPagerAdapter(manager: FragmentManager?) : FragmentStatePagerAdapter(
-    manager!!
-) {
+class ProductsInCategoryPagerAdapter(manager: FragmentManager?) : FragmentStatePagerAdapter(manager!!) {
     private val mFragmentList: MutableList<Fragment> = ArrayList()
     private val mFragmentTitleList: MutableList<String> = ArrayList()
     override fun getItem(position: Int): Fragment {

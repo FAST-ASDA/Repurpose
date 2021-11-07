@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.view.adapter
 
 import android.content.Context
@@ -18,64 +17,45 @@ import com.limerse.repurpose.view.customview.TextDrawable
 import com.limerse.repurpose.view.customview.TextDrawable.IBuilder
 import java.util.*
 
-
 class CategoryListAdapter(context: Context) :
     RecyclerView.Adapter<CategoryListAdapter.VersionViewHolder>() {
     var clickListener: OnItemClickListener? = null
     private val mColorGenerator = ColorGenerator.MATERIAL
     private var mDrawableBuilder: IBuilder? = null
     private var drawable: TextDrawable? = null
-    private var ImageUrl: String? = null
+    private var ImageUrl: Any? = null
     private val context: Context
-    override fun onCreateViewHolder(
-        viewGroup: ViewGroup,
-        i: Int
-    ): VersionViewHolder {
+
+    override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): VersionViewHolder {
         val view = LayoutInflater.from(viewGroup.context).inflate(
             R.layout.item_category_list, viewGroup, false
         )
         return VersionViewHolder(view)
     }
 
-    override fun onBindViewHolder(
-        versionViewHolder: VersionViewHolder,
-        categoryIndex: Int
-    ) {
-        versionViewHolder.itemName.text = categoryList!![categoryIndex]
-            .productCategoryName
-        versionViewHolder.itemDesc.text =
-            categoryList!![categoryIndex]
-                .productCategoryDescription
-        mDrawableBuilder = TextDrawable.builder().beginConfig().withBorder(4)
-            .endConfig().roundRect(10)
+    override fun onBindViewHolder(versionViewHolder: VersionViewHolder, categoryIndex: Int) {
+        versionViewHolder.itemName.text = categoryList!![categoryIndex].productCategoryName
+        versionViewHolder.itemDesc.text = categoryList!![categoryIndex].productCategoryDescription
+        mDrawableBuilder = TextDrawable.builder().beginConfig().withBorder(4).endConfig().roundRect(10)
         drawable = mDrawableBuilder!!.build(
             categoryList!![categoryIndex].productCategoryName[0].toString(),
-            mColorGenerator!!.getColor(
-                categoryList!![categoryIndex]
-                    .productCategoryName
-            )
+            mColorGenerator!!.getColor(categoryList!![categoryIndex].productCategoryName)
         )
         ImageUrl = categoryList!![categoryIndex].productCategoryImageUrl
         Glide.with(context).load(ImageUrl).placeholder(drawable)
             .error(drawable)
             .centerCrop().into(versionViewHolder.imagView)
         val label = LabelView(context)
-        label.text = categoryList!![categoryIndex]
-            .productCategoryDiscount
+        label.text = categoryList!![categoryIndex].productCategoryDiscount
         label.setBackgroundColor(-0x16e19d)
-        label.setTargetView(
-            versionViewHolder.imagView, 10,
-            LabelView.Gravity.RIGHT_TOP
-        )
+        label.setTargetView(versionViewHolder.imagView, 10, LabelView.Gravity.RIGHT_TOP)
     }
 
     override fun getItemCount(): Int {
         return if (categoryList == null) 0 else categoryList!!.size
     }
 
-    fun SetOnItemClickListener(
-        itemClickListener: OnItemClickListener?
-    ) {
+    fun SetOnItemClickListener(itemClickListener: OnItemClickListener?) {
         clickListener = itemClickListener
     }
 
@@ -87,11 +67,6 @@ class CategoryListAdapter(context: Context) :
         View.OnClickListener {
         var itemName: TextView = itemView.findViewById<View>(R.id.item_name) as TextView
         var itemDesc: TextView = itemView.findViewById<View>(R.id.item_short_desc) as TextView
-        var itemCost: TextView? = null
-        var availability: TextView? = null
-        var quanitity: TextView? = null
-        var addItem: TextView? = null
-        var removeItem: TextView? = null
         var imagView: ImageView
         override fun onClick(v: View) {
             clickListener!!.onItemClick(v, position)

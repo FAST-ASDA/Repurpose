@@ -32,19 +32,12 @@ import com.limerse.repurpose.view.fragment.MyCartFragment
 import java.math.BigDecimal
 import java.util.*
 
-class ShoppingListAdapter(
-    private val context: Context,
-    private val mDragStartListener: OnStartDragListener
-) : RecyclerView.Adapter<ItemViewHolder>(), ItemTouchHelperAdapter {
-    private val mColorGenerator = ColorGenerator.MATERIAL
-    private var mDrawableBuilder: IBuilder? = null
-    private var drawable: TextDrawable? = null
+class ShoppingListAdapter(private val context: Context, private val mDragStartListener: OnStartDragListener) : RecyclerView.Adapter<ItemViewHolder>(), ItemTouchHelperAdapter {
     private var ImageUrl: String? = null
     private var productList: List<Product?> = ArrayList()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_product_list, parent, false
-        )
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_product_list, parent, false)
         return ItemViewHolder(view)
     }
 
@@ -73,15 +66,10 @@ class ShoppingListAdapter(
             StrikethroughSpan(), sellCostString.length,
             costString.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
-        mDrawableBuilder = TextDrawable.builder().beginConfig().withBorder(4)
-            .endConfig().roundRect(10)
-        drawable = mDrawableBuilder!!.build(
-            productList[position]!!.itemName[0].toString(), mColorGenerator!!.getColor(productList[position]!!.itemName)
-        )
+
         ImageUrl = productList[position]!!.imageURL
         holder.quanitity.text = centerRepository!!.listOfProductsInShoppingList[position]!!.quantity
-        Glide.with(context).load(ImageUrl).placeholder(drawable)
-            .error(drawable)
+        Glide.with(context).load(ImageUrl)
             .centerCrop().into(holder.imagView)
 
         // Start a drag whenever the handle view it touched
@@ -201,11 +189,10 @@ class ShoppingListAdapter(
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         ItemTouchHelperViewHolder, View.OnClickListener {
         // public final ImageView handleView;
-        var itemName: TextView
-        var itemDesc: TextView
-        var itemCost: TextView
-        var availability: TextView
-        var quanitity: TextView
+        var itemName: TextView = itemView.findViewById<View>(R.id.item_name) as TextView
+        var itemDesc: TextView = itemView.findViewById<View>(R.id.item_short_desc) as TextView
+        var itemCost: TextView = itemView.findViewById<View>(R.id.item_price) as TextView
+        var quanitity: TextView = itemView.findViewById<View>(R.id.iteam_amount) as TextView
         var addItem: TextView
         var removeItem: TextView
         var imagView: ImageView
@@ -223,12 +210,6 @@ class ShoppingListAdapter(
 
         init {
             // handleView = (ImageView) itemView.findViewById(R.id.handle);
-            itemName = itemView.findViewById<View>(R.id.item_name) as TextView
-            itemDesc = itemView.findViewById<View>(R.id.item_short_desc) as TextView
-            itemCost = itemView.findViewById<View>(R.id.item_price) as TextView
-            availability = itemView
-                .findViewById<View>(R.id.iteam_avilable) as TextView
-            quanitity = itemView.findViewById<View>(R.id.iteam_amount) as TextView
             itemName.isSelected = true
             imagView = itemView.findViewById<View>(R.id.product_thumb) as ImageView
             addItem = itemView.findViewById<View>(R.id.add_item) as TextView
