@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.model
 
 import com.limerse.repurpose.model.entities.Product
@@ -35,8 +34,10 @@ class CenterRepository {
         @JvmStatic
         var centerRepository: CenterRepository? = null
             get() {
-                if (null == field) {
-                    field = CenterRepository()
+                when (field) {
+                    null -> {
+                        field = CenterRepository()
+                    }
                 }
                 return field
             }

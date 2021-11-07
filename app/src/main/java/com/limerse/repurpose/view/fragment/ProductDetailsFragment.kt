@@ -31,7 +31,6 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
     private var itemImage: ImageView? = null
     private var itemSellPrice: TextView? = null
     private var itemName: TextView? = null
-    private var quanitity: TextView? = null
     private var itemdescription: TextView? = null
     private var mDrawableBuilder: IBuilder? = null
     private var drawable: TextDrawable? = null
@@ -59,20 +58,7 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
                 AnimationType.SLIDE_LEFT
             )
         }
-        (activity as ECartHomeActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        similarProductsPager = rootView
-            .findViewById<View>(R.id.similar_products_pager) as ClickableViewPager
-        topSellingPager = rootView
-            .findViewById<View>(R.id.top_selleing_pager) as ClickableViewPager
-        itemSellPrice = (rootView
-            .findViewById<View>(R.id.category_discount) as TextView)
-        quanitity = (rootView.findViewById<View>(R.id.iteam_amount) as TextView)
-        itemName = (rootView.findViewById<View>(R.id.product_name) as TextView)
-        itemdescription = (rootView
-            .findViewById<View>(R.id.product_description) as TextView)
-        itemImage = rootView.findViewById<View>(R.id.product_image) as ImageView
-        fillProductData()
-        rootView.findViewById<View>(R.id.okay).setOnClickListener {
+        rootView!!.findViewById<View>(R.id.cool).setOnClickListener {
             Utils.switchFragmentWithAnimation(
                 R.id.frag_container,
                 SellerProfileFragment(),
@@ -80,8 +66,19 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
                 AnimationType.SLIDE_LEFT
             )
         }
-
-        rootView.findViewById<View>(R.id.add_item).setOnClickListener {
+        (activity as ECartHomeActivity?)!!.supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        similarProductsPager = rootView
+            .findViewById<View>(R.id.similar_products_pager) as ClickableViewPager
+        topSellingPager = rootView
+            .findViewById<View>(R.id.top_selleing_pager) as ClickableViewPager
+        itemSellPrice = (rootView
+            .findViewById<View>(R.id.category_discount) as TextView)
+        itemName = (rootView.findViewById<View>(R.id.product_name) as TextView)
+        itemdescription = (rootView
+            .findViewById<View>(R.id.product_description) as TextView)
+        itemImage = rootView.findViewById<View>(R.id.product_image) as ImageView
+        fillProductData()
+        rootView.findViewById<View>(R.id.okay).setOnClickListener {
             if (isFromCart) {
 
                 //Update Quantity on shopping List
@@ -89,13 +86,12 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
                     .quantity = (
                         Integer.valueOf(
                             centerRepository
-                                !!.listOfProductsInShoppingList[productListNumber]
+                            !!.listOfProductsInShoppingList[productListNumber]
                                 .quantity
                         ) + 1).toString()
 
 
                 //Update Ui
-                quanitity!!.text = centerRepository!!.listOfProductsInShoppingList[productListNumber].quantity
                 vibrate((activity)!!)
 
                 //Update checkout amount on screen
@@ -104,12 +100,13 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
                         java.lang.Long
                             .valueOf(
                                 centerRepository
-                                    !!.listOfProductsInShoppingList[productListNumber]
+                                !!.listOfProductsInShoppingList[productListNumber]
                                     .sellMRP
                             )
                     ), true
                 )
-            } else {
+            }
+            else {
 
                 // current object
                 val tempObj =
@@ -147,13 +144,9 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
                                 )
                         ), true
                     )
-
-                    // update current item quanitity
-                    quanitity!!.text = tempObj.quantity
                 } else {
                     (context as ECartHomeActivity?)!!.updateItemCount(true)
                     tempObj.quantity = 1.toString()
-                    quanitity!!.text = tempObj.quantity
                     centerRepository!!.listOfProductsInShoppingList.add(tempObj)
                     (context as ECartHomeActivity?)!!.updateCheckOutAmount(
                         BigDecimal.valueOf(java.lang.Long.valueOf(centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!!.get(productListNumber)!!.sellMRP)), true
@@ -162,95 +155,96 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
                 vibrate((context)!!)
             }
         }
-        rootView.findViewById<View>(R.id.remove_item).setOnClickListener {
-            if (isFromCart) {
-                if (Integer.valueOf(
-                        centerRepository!!.listOfProductsInShoppingList[productListNumber].quantity
-                    ) > 2
-                ) {
-                    centerRepository!!.listOfProductsInShoppingList[productListNumber]
-                        .quantity = (
-                            Integer.valueOf(
-                                centerRepository!!.listOfProductsInShoppingList[productListNumber]
-                                    .quantity
-                            ) - 1).toString()
-                    quanitity!!.text = centerRepository!!.listOfProductsInShoppingList
-                        .get(productListNumber).quantity
-                    (activity as ECartHomeActivity?)!!.updateCheckOutAmount(
-                        BigDecimal.valueOf(
-                            java.lang.Long
-                                .valueOf(
-                                    centerRepository!!.listOfProductsInShoppingList[productListNumber]
-                                        .sellMRP
-                                )
-                        ), false
-                    )
-                    vibrate((activity)!!)
-                } else if (Integer.valueOf(
-                        centerRepository!!.listOfProductsInShoppingList[productListNumber].quantity
-                    ) == 1
-                ) {
-                    (activity as ECartHomeActivity?)!!.updateItemCount(false)
-                    (activity as ECartHomeActivity?)!!.updateCheckOutAmount(
-                        BigDecimal.valueOf(
-                            java.lang.Long
-                                .valueOf(
-                                    centerRepository!!.listOfProductsInShoppingList[productListNumber]
-                                        .sellMRP
-                                )
-                        ), false
-                    )
-                    centerRepository!!.listOfProductsInShoppingList
-                        .removeAt(productListNumber)
-                    if (Integer
-                            .valueOf(
-                                (activity as ECartHomeActivity?)!!.itemCount
-                            ) == 0
-                    ) {
-                        MyCartFragment.Companion.updateMyCartFragment(false)
-                    }
-                    vibrate((activity)!!)
-                }
-            } else {
-                val tempObj =
-                    (centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!![productListNumber])!!
-                if (centerRepository!!.listOfProductsInShoppingList.contains(tempObj)
-                ) {
-                    val indexOfTempInShopingList =
-                        centerRepository!!.listOfProductsInShoppingList
-                            .indexOf(tempObj)
-                    if (Integer.valueOf(tempObj.quantity) != 0) {
-                        centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
-                            .quantity = (Integer.valueOf(
-                            tempObj
-                                .quantity
-                        ) - 1).toString()
-                        (context as ECartHomeActivity?)!!.updateCheckOutAmount(
-                            BigDecimal.valueOf(
-                                java.lang.Long
-                                    .valueOf(
-                                        centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!!.get(productListNumber)!!.sellMRP
-                                    )
-                            ),
-                            false
-                        )
-                        quanitity!!.text = centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
-                            .quantity
-                        vibrate((context)!!)
-                        if (Integer.valueOf(
-                                centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
-                                    .quantity
-                            ) == 0
-                        ) {
-                            centerRepository!!.listOfProductsInShoppingList
-                                .removeAt(indexOfTempInShopingList)
-                            (context as ECartHomeActivity?)!!.updateItemCount(false)
-                        }
-                    }
-                } else {
-                }
-            }
-        }
+
+//        rootView.findViewById<View>(R.id.remove_item).setOnClickListener {
+//            if (isFromCart) {
+//                if (Integer.valueOf(
+//                        centerRepository!!.listOfProductsInShoppingList[productListNumber].quantity
+//                    ) > 2
+//                ) {
+//                    centerRepository!!.listOfProductsInShoppingList[productListNumber]
+//                        .quantity = (
+//                            Integer.valueOf(
+//                                centerRepository!!.listOfProductsInShoppingList[productListNumber]
+//                                    .quantity
+//                            ) - 1).toString()
+//                    quanitity!!.text = centerRepository!!.listOfProductsInShoppingList
+//                        .get(productListNumber).quantity
+//                    (activity as ECartHomeActivity?)!!.updateCheckOutAmount(
+//                        BigDecimal.valueOf(
+//                            java.lang.Long
+//                                .valueOf(
+//                                    centerRepository!!.listOfProductsInShoppingList[productListNumber]
+//                                        .sellMRP
+//                                )
+//                        ), false
+//                    )
+//                    vibrate((activity)!!)
+//                } else if (Integer.valueOf(
+//                        centerRepository!!.listOfProductsInShoppingList[productListNumber].quantity
+//                    ) == 1
+//                ) {
+//                    (activity as ECartHomeActivity?)!!.updateItemCount(false)
+//                    (activity as ECartHomeActivity?)!!.updateCheckOutAmount(
+//                        BigDecimal.valueOf(
+//                            java.lang.Long
+//                                .valueOf(
+//                                    centerRepository!!.listOfProductsInShoppingList[productListNumber]
+//                                        .sellMRP
+//                                )
+//                        ), false
+//                    )
+//                    centerRepository!!.listOfProductsInShoppingList
+//                        .removeAt(productListNumber)
+//                    if (Integer
+//                            .valueOf(
+//                                (activity as ECartHomeActivity?)!!.itemCount
+//                            ) == 0
+//                    ) {
+//                        MyCartFragment.Companion.updateMyCartFragment(false)
+//                    }
+//                    vibrate((activity)!!)
+//                }
+//            } else {
+//                val tempObj =
+//                    (centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!![productListNumber])!!
+//                if (centerRepository!!.listOfProductsInShoppingList.contains(tempObj)
+//                ) {
+//                    val indexOfTempInShopingList =
+//                        centerRepository!!.listOfProductsInShoppingList
+//                            .indexOf(tempObj)
+//                    if (Integer.valueOf(tempObj.quantity) != 0) {
+//                        centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
+//                            .quantity = (Integer.valueOf(
+//                            tempObj
+//                                .quantity
+//                        ) - 1).toString()
+//                        (context as ECartHomeActivity?)!!.updateCheckOutAmount(
+//                            BigDecimal.valueOf(
+//                                java.lang.Long
+//                                    .valueOf(
+//                                        centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!!.get(productListNumber)!!.sellMRP
+//                                    )
+//                            ),
+//                            false
+//                        )
+//                        quanitity!!.text = centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
+//                            .quantity
+//                        vibrate((context)!!)
+//                        if (Integer.valueOf(
+//                                centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
+//                                    .quantity
+//                            ) == 0
+//                        ) {
+//                            centerRepository!!.listOfProductsInShoppingList
+//                                .removeAt(indexOfTempInShopingList)
+//                            (context as ECartHomeActivity?)!!.updateItemCount(false)
+//                        }
+//                    }
+//                } else {
+//                }
+//            }
+//        }
         rootView.isFocusableInTouchMode = true
         rootView.requestFocus()
         rootView.setOnKeyListener { v, keyCode, event ->
@@ -313,7 +307,6 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
 
             //Fetch and display item from Gloabl Data Model
             itemName!!.text = centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!![productListNumber]!!.itemName
-            quanitity!!.text = centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!![productListNumber]!!.quantity
             itemdescription!!.text = centerRepository!!.getMapOfProductsInCategory()[subcategoryKey]!![productListNumber]!!.itemDetail
             val sellCostString = (rupees(
                 BigDecimal.valueOf(
@@ -375,7 +368,6 @@ class ProductDetailsFragment(private val subcategoryKey: String?, private var pr
 
             //Fetch and display products from Shopping list
             itemName!!.text = centerRepository!!.listOfProductsInShoppingList[productListNumber].itemName
-            quanitity!!.text = centerRepository!!.listOfProductsInShoppingList.get(productListNumber).quantity
             itemdescription!!.text = centerRepository!!.listOfProductsInShoppingList.get(productListNumber).itemDetail
             val sellCostString = (rupees(
                 BigDecimal.valueOf(

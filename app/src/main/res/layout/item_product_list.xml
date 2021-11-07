@@ -106,54 +106,18 @@
 
             <TextView
                 android:id="@+id/remove_item"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_toStartOf="@+id/iteam_amount"
-                android:background="@drawable/round_text_remove_item"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="-"
-                android:textColor="#FF0000"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/iteam_amount"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_toStartOf="@+id/add_item"
-                android:ellipsize="marquee"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:freezesText="true"
-                android:marqueeRepeatLimit="marquee_forever"
-                android:scrollHorizontally="true"
-                android:singleLine="true"
-                android:text="0"
-
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/add_item"
-                android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignParentEnd="true"
                 android:layout_gravity="center_vertical|center_horizontal"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/round_text_add_item"
+                android:layout_alignParentEnd="true"
                 android:gravity="center_vertical|center_horizontal"
-                android:text="+"
-                android:textColor="#ff669900"
-                android:textSize="20sp"
+                android:text="Add to Cart"
+                android:textColor="@color/white"
+                android:textSize="14sp"
                 android:textStyle="bold" />
+
         </RelativeLayout>
     </LinearLayout>
 

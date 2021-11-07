@@ -23,7 +23,6 @@ class ProductOverviewFragment : Fragment() {
     private var mToolbar: Toolbar? = null
     private var viewPager: ViewPager? = null
     private var collapsingToolbarLayout: CollapsingToolbarLayout? = null
-    private var tabLayout: TabLayout? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(
@@ -40,7 +39,6 @@ class ProductOverviewFragment : Fragment() {
         viewPager = view.findViewById<View>(R.id.htab_viewpager) as ViewPager?
         collapsingToolbarLayout = view.findViewById<View>(R.id.htab_collapse_toolbar) as CollapsingToolbarLayout?
         collapsingToolbarLayout!!.isTitleEnabled = false
-        tabLayout = view.findViewById<View>(R.id.htab_tabs) as TabLayout?
         mToolbar = view.findViewById<View>(R.id.htab_toolbar) as Toolbar?
         if (mToolbar != null) {
             (activity as ECartHomeActivity?)!!.setSupportActionBar(mToolbar)
@@ -73,15 +71,6 @@ class ProductOverviewFragment : Fragment() {
 
     private fun setUpUi() {
         setupViewPager(viewPager)
-        tabLayout!!.setupWithViewPager(viewPager)
-        tabLayout!!.setOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab) {
-                    viewPager!!.currentItem = tab.position
-                }
-
-                override fun onTabUnselected(tab: TabLayout.Tab) {}
-                override fun onTabReselected(tab: TabLayout.Tab) {}
-            })
     }
 
     private fun setupViewPager(viewPager: ViewPager?) {

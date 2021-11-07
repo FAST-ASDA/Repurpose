@@ -17,7 +17,6 @@ import com.limerse.repurpose.R
 import com.limerse.repurpose.model.CenterRepository.Companion.centerRepository
 import com.limerse.repurpose.model.entities.Money.Companion.rupees
 import com.limerse.repurpose.model.entities.Product
-import com.limerse.repurpose.util.ColorGenerator
 import com.limerse.repurpose.util.Utils.vibrate
 import com.limerse.repurpose.view.activities.ECartHomeActivity
 import com.limerse.repurpose.view.customview.TextDrawable
@@ -63,67 +62,67 @@ class ProductListAdapter(subcategoryKey: String?, context: Context, isCartlist: 
         Log.d("coolMan",ImageUrl!!)
         Glide.with(context).load(ImageUrl)
             .centerCrop().into(holder.imagView)
-        holder.addItem.findViewById<View>(R.id.add_item).setOnClickListener { //current object
-            val tempObj = productList!![position]
-
-
-            //if current object is lready in shopping list
-            if (centerRepository!!.listOfProductsInShoppingList.contains(tempObj)
-            ) {
-
-
-                //get position of current item in shopping list
-                val indexOfTempInShopingList = centerRepository!!.listOfProductsInShoppingList
-                    .indexOf(tempObj)
-
-                // increase quantity of current item in shopping list
-                if (tempObj!!.quantity.toInt() == 0) {
-                    getContext()
-                        .updateItemCount(true)
-                }
-
-
-                // update quanity in shopping list
-                centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
-                    .quantity = (Integer
-                    .valueOf(
-                        tempObj
-                            .quantity
-                    ) + 1).toString()
-
-
-                //update checkout amount
-                getContext().updateCheckOutAmount(
-                    BigDecimal
-                        .valueOf(
-                            java.lang.Long
-                                .valueOf(
-                                    productList!!.get(position)!!.sellMRP
-                                )
-                        ),
-                    true
-                )
-
-                // update current item quanitity
-                holder.quanitity.text = tempObj.quantity
-            } else {
-                getContext().updateItemCount(true)
-                tempObj!!.quantity = 1.toString()
-                holder.quanitity.text = tempObj.quantity
-                centerRepository!!.listOfProductsInShoppingList.add(tempObj)
-                getContext().updateCheckOutAmount(
-                    BigDecimal
-                        .valueOf(
-                            java.lang.Long
-                                .valueOf(
-                                    productList!!.get(position)!!.sellMRP
-                                )
-                        ),
-                    true
-                )
-            }
-            vibrate(getContext())
-        }
+//        holder.addItem.findViewById<View>(R.id.add_item).setOnClickListener { //current object
+//            val tempObj = productList!![position]
+//
+//
+//            //if current object is lready in shopping list
+//            if (centerRepository!!.listOfProductsInShoppingList.contains(tempObj)
+//            ) {
+//
+//
+//                //get position of current item in shopping list
+//                val indexOfTempInShopingList = centerRepository!!.listOfProductsInShoppingList
+//                    .indexOf(tempObj)
+//
+//                // increase quantity of current item in shopping list
+//                if (tempObj!!.quantity.toInt() == 0) {
+//                    getContext()
+//                        .updateItemCount(true)
+//                }
+//
+//
+//                // update quanity in shopping list
+//                centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList]
+//                    .quantity = (Integer
+//                    .valueOf(
+//                        tempObj
+//                            .quantity
+//                    ) + 1).toString()
+//
+//
+//                //update checkout amount
+//                getContext().updateCheckOutAmount(
+//                    BigDecimal
+//                        .valueOf(
+//                            java.lang.Long
+//                                .valueOf(
+//                                    productList!!.get(position)!!.sellMRP
+//                                )
+//                        ),
+//                    true
+//                )
+//
+//                // update current item quanitity
+//                holder.quanitity.text = tempObj.quantity
+//            } else {
+//                getContext().updateItemCount(true)
+//                tempObj!!.quantity = 1.toString()
+//                holder.quanitity.text = tempObj.quantity
+//                centerRepository!!.listOfProductsInShoppingList.add(tempObj)
+//                getContext().updateCheckOutAmount(
+//                    BigDecimal
+//                        .valueOf(
+//                            java.lang.Long
+//                                .valueOf(
+//                                    productList!!.get(position)!!.sellMRP
+//                                )
+//                        ),
+//                    true
+//                )
+//            }
+//            vibrate(getContext())
+//        }
         holder.removeItem.setOnClickListener {
             val tempObj = productList!![position]
             if (centerRepository!!.listOfProductsInShoppingList
@@ -145,8 +144,6 @@ class ProductListAdapter(subcategoryKey: String?, context: Context, isCartlist: 
                         ),
                         false
                     )
-                    holder.quanitity.text =
-                        centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList].quantity
                     vibrate(getContext())
                     if (Integer.valueOf(
                             centerRepository!!.listOfProductsInShoppingList[indexOfTempInShopingList].quantity
@@ -202,10 +199,6 @@ class ProductListAdapter(subcategoryKey: String?, context: Context, isCartlist: 
         var itemName: TextView = itemView.findViewById<View>(R.id.item_name) as TextView
         var itemDesc: TextView = itemView.findViewById<View>(R.id.item_short_desc) as TextView
         var itemCost: TextView = itemView.findViewById<View>(R.id.item_price) as TextView
-        var availability: TextView = itemView
-            .findViewById<View>(R.id.iteam_avilable) as TextView
-        var quanitity: TextView = itemView.findViewById<View>(R.id.iteam_amount) as TextView
-        var addItem: TextView
         var removeItem: TextView
         var imagView: ImageView
         override fun onClick(v: View) {
@@ -215,7 +208,7 @@ class ProductListAdapter(subcategoryKey: String?, context: Context, isCartlist: 
         init {
             itemName.isSelected = true
             imagView = itemView.findViewById<View>(R.id.product_thumb) as ImageView
-            addItem = itemView.findViewById<View>(R.id.add_item) as TextView
+            //addItem = itemView.findViewById<View>(R.id.add_item) as TextView
             removeItem = itemView.findViewById<View>(R.id.remove_item) as TextView
             itemView.setOnClickListener(this)
         }

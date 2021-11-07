@@ -1,5 +1,6 @@
 package com.limerse.repurpose.view.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.text.Spannable
@@ -19,15 +20,12 @@ import com.limerse.repurpose.R
 import com.limerse.repurpose.model.CenterRepository.Companion.centerRepository
 import com.limerse.repurpose.model.entities.Money.Companion.rupees
 import com.limerse.repurpose.model.entities.Product
-import com.limerse.repurpose.util.ColorGenerator
 import com.limerse.repurpose.util.Utils.vibrate
 import com.limerse.repurpose.view.activities.ECartHomeActivity
 import com.limerse.repurpose.view.adapter.ShoppingListAdapter.ItemViewHolder
 import com.limerse.repurpose.view.customview.ItemTouchHelperAdapter
 import com.limerse.repurpose.view.customview.ItemTouchHelperViewHolder
 import com.limerse.repurpose.view.customview.OnStartDragListener
-import com.limerse.repurpose.view.customview.TextDrawable
-import com.limerse.repurpose.view.customview.TextDrawable.IBuilder
 import com.limerse.repurpose.view.fragment.MyCartFragment
 import java.math.BigDecimal
 import java.util.*
@@ -41,6 +39,7 @@ class ShoppingListAdapter(private val context: Context, private val mDragStartLi
         return ItemViewHolder(view)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.itemName.text = productList[position]!!.itemName
         holder.itemDesc.text = productList[position]!!.itemShortDesc
@@ -79,22 +78,22 @@ class ShoppingListAdapter(private val context: Context, private val mDragStartLi
             }
             false
         }
-        holder.addItem.setOnClickListener {
-            centerRepository!!.listOfProductsInShoppingList[position]
-                .quantity = (
-                    Integer.valueOf(
-                        centerRepository!!.listOfProductsInShoppingList[position]!!.quantity
-                    ) + 1).toString()
-            holder.quanitity.text = centerRepository!!.listOfProductsInShoppingList[position]!!.quantity
-            vibrate(context)
-            (context as ECartHomeActivity).updateCheckOutAmount(
-                BigDecimal.valueOf(
-                    java.lang.Long.valueOf(
-                        centerRepository!!.listOfProductsInShoppingList[position]!!.sellMRP
-                    )
-                ), true
-            )
-        }
+//        holder.addItem.setOnClickListener {
+//            centerRepository!!.listOfProductsInShoppingList[position]
+//                .quantity = (
+//                    Integer.valueOf(
+//                        centerRepository!!.listOfProductsInShoppingList[position]!!.quantity
+//                    ) + 1).toString()
+//            holder.quanitity.text = centerRepository!!.listOfProductsInShoppingList[position]!!.quantity
+//            vibrate(context)
+//            (context as ECartHomeActivity).updateCheckOutAmount(
+//                BigDecimal.valueOf(
+//                    java.lang.Long.valueOf(
+//                        centerRepository!!.listOfProductsInShoppingList[position]!!.sellMRP
+//                    )
+//                ), true
+//            )
+//        }
         holder.removeItem.setOnClickListener {
             if (Integer.valueOf(
                     centerRepository!!.listOfProductsInShoppingList[position]!!.quantity
@@ -193,7 +192,6 @@ class ShoppingListAdapter(private val context: Context, private val mDragStartLi
         var itemDesc: TextView = itemView.findViewById<View>(R.id.item_short_desc) as TextView
         var itemCost: TextView = itemView.findViewById<View>(R.id.item_price) as TextView
         var quanitity: TextView = itemView.findViewById<View>(R.id.iteam_amount) as TextView
-        var addItem: TextView
         var removeItem: TextView
         var imagView: ImageView
         override fun onItemSelected() {
@@ -212,7 +210,7 @@ class ShoppingListAdapter(private val context: Context, private val mDragStartLi
             // handleView = (ImageView) itemView.findViewById(R.id.handle);
             itemName.isSelected = true
             imagView = itemView.findViewById<View>(R.id.product_thumb) as ImageView
-            addItem = itemView.findViewById<View>(R.id.add_item) as TextView
+            //addItem = itemView.findViewById<View>(R.id.add_item) as TextView
             removeItem = itemView.findViewById<View>(R.id.remove_item) as TextView
             itemView.setOnClickListener(this)
         }

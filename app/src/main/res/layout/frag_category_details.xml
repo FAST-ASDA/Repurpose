@@ -43,13 +43,6 @@
                 app:layout_scrollFlags="scroll|enterAlways|snap"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/htab_tabs"
-                android:layout_width="wrap_content"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_gravity="bottom"
-                app:tabSelectedTextColor="@color/white"
-                app:tabMode="scrollable" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 

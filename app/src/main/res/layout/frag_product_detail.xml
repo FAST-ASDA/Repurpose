@@ -67,10 +67,12 @@
             android:id="@+id/product_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
             android:ellipsize="marquee"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:freezesText="true"
@@ -106,7 +108,31 @@
                 android:textSize="30sp" />
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/cool"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:paddingEnd="8dp">
 
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/circular_grey_bordersolid"
+                android:padding="10dp"
+                app:srcCompat="@drawable/akshat" />
+
+            <TextView
+                android:id="@+id/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Posted by akshaaatt"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
         <TextView
             android:id="@+id/hot_offers"
             android:layout_width="wrap_content"

@@ -8,9 +8,6 @@ import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
 class FakeWebServer {
-    fun initiateFakeServer() {
-        addCategory()
-    }
 
     fun addCategory() {
         val listOfCategory = ArrayList<ProductCategoryModel>()
@@ -45,226 +42,79 @@ class FakeWebServer {
     }
 
     // Vaccum Cleaner
-    val allElectronics: Unit
+    private val allElectronics: Unit
         get() {
             val productMap = ConcurrentHashMap<String, MutableList<Product?>>()
-            var productlist = mutableListOf<Product?>()
-
-            // Ovens
-            productlist
-                .add(
-                    Product(
-                        "Solo Microwave Oven",
-                        "IFB 17PMMEC1 17 L Solo Microwave Oven",
-                        "Explore the joys of cooking with IFB 17PM MEC1 Solo Microwave Oven. The budget-friendly appliance has several nifty features including Multi Power Levels and Speed Defrost to make cooking a fun-filled experience.",
-                        "5490",
-                        "10",
-                        "4290",
-                        "0",
-                        "http://img6a.flixcart.com/image/microwave-new/3/3/z/ifb-17pmmec1-400x400-imae4g4uzzjsumhk.jpeg",
-                        "oven_1"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Solo Microwave Oven",
-                        "Bajaj 1701MT 17 L Solo Microwave Oven",
-                        "Explore the joys of cooking with IFB 17PM MEC1 Solo Microwave Oven. The budget-friendly appliance has several nifty features including Multi Power Levels and Speed Defrost to make cooking a fun-filled experience.",
-                        "5000",
-                        "10",
-                        "4290",
-                        "0",
-                        "http://img6a.flixcart.com/image/microwave-new/z/j/p/bajaj-1701mt-400x400-imae4ty4vyzhaagz.jpeg",
-                        "oven_2"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Solo Microwave Oven",
-                        "Whirlpool MW 25 BG 25 L Grill Microwave Oven",
-                        "http://img6a.flixcart.com/image/microwave-new/a/y/f/whirlpool-mw-25-bg-400x400-imaebagzstnngjqt.jpeg",
-                        "5290",
-                        "10",
-                        "4290",
-                        "0",
-                        "http://img6a.flixcart.com/image/microwave-new/z/j/p/bajaj-1701mt-400x400-imae4ty4vyzhaagz.jpeg",
-                        "oven_3"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Solo Microwave Oven",
-                        "Morphy Richards 25CG 25 L Convection Microwave Oven",
-                        "http://img5a.flixcart.com/image/microwave-new/v/q/y/morphy-richard-25cg-400x400-imadxecx93kb6q4f.jpeg",
-                        "5300",
-                        "12",
-                        "4290",
-                        "0",
-                        "http://img6a.flixcart.com/image/microwave-new/z/j/p/bajaj-1701mt-400x400-imae4ty4vyzhaagz.jpeg",
-                        "oven_4"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Solo Microwave Oven",
-                        "IFB 25SC4 25 L Convection Microwave Oven",
-                        "http://img5a.flixcart.com/image/microwave-new/v/q/y/morphy-richard-25cg-400x400-imadxecx93kb6q4f.jpeg",
-                        "5190",
-                        "10",
-                        "4290",
-                        "0",
-                        "http://img6a.flixcart.com/image/microwave-new/y/k/m/ifb-25sc4-400x400-imaef2pztynvqjaf.jpeg",
-                        "oven_5"
-                    )
-                )
-            productMap["Skirts"] = productlist
             val tvList = mutableListOf<Product?>()
 
             // TV
             tvList.add(
                 Product(
-                    "LED",
-                    "Vu 80cm (32) HD Ready LED TV",
-                    "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
+                    "PUMA Jacket",
+                    "Bought it just 2 months ago",
+                    "Enjoy this amazing jacket from puma which gives an athletic look for you.",
                     "16000",
                     "12",
                     "13990",
                     "0",
-                    "http://img5a.flixcart.com/image/television/g/y/w/vu-32k160mrevd-400x400-imae93ahpwtchzys.jpeg",
+                    "https://m.media-amazon.com/images/I/512Z2SJds9L._UL1280_.jpg",
                     "tv_1"
                 )
             )
             tvList.add(
                 Product(
-                    "LED 1",
-                    "Vu 80cm (32) HD Ready LED TV",
-                    "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
+                    "Zara Top",
+                    "Clip Dot Peasant Crop Top",
+                    "Had this amazing piece of art for a month",
                     "17000",
                     "12",
                     "13990",
                     "0",
-                    "http://img6a.flixcart.com/image/television/z/f/w/bpl-bpl080d51h-400x400-imaeeztqvhxbnam2.jpeg",
+                    "https://forever21.imgix.net/img/app/product/6/605358-5688950.jpg?w=573&auto=format",
                     "tv_2"
                 )
             )
             tvList.add(
                 Product(
-                    "LED 2",
-                    "Vu 80cm (32) HD Ready LED TV",
-                    "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
+                    "Bata Shoes",
+                    "Hush Puppies Men's Hpo2 Flex Formal Shoes",
+                    "Lovely pair, really comfortable",
                     "18000",
                     "12",
                     "13990",
                     "0",
-                    "http://img6a.flixcart.com/image/television/f/b/z/micromax-43x6300mhd-400x400-imaednxv8bgznhbx.jpeg",
+                    "https://m.media-amazon.com/images/I/91Qo4nTsttL._UL1500_.jpg",
                     "tv_3"
                 )
             )
             tvList.add(
                 Product(
-                    "LED 3",
-                    "Vu 80cm (32) HD Ready LED TV",
-                    "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
-                    "16000",
+                    "Gucci Bag",
+                    "GG Marmont small matelassé leather shoulder bag",
+                    "Lucious Bag, loved it!",
+                    "100800",
                     "12",
-                    "13990",
+                    "88704",
                     "0",
-                    "http://img6a.flixcart.com/image/television/a/w/z/vu-32d6545-400x400-imaebagzbpzqhmxc.jpeg",
+                    "https://cdn-images.farfetch-contents.com/12/96/49/36/12964936_31615675_1000.jpg",
                     "tv_4"
                 )
             )
             tvList.add(
                 Product(
-                    "LED 4",
-                    "Vu 80cm (32) HD Ready LED TV",
-                    "Enjoy movie night with the family on this 80cm LED TV from Vu. With an A+ grade panel, this TV renders crisp details that make what you're watching look realistic.",
-                    "16000",
-                    "12",
-                    "13990",
+                    "Apple iWatch",
+                    "Gold Aluminium Case with Pink Sand Sport Band",
+                    "Works great and in amazing condition!",
+                    "50000",
+                    "20",
+                    "49000",
                     "0",
-                    "http://img6a.flixcart.com/image/television/s/r/t/lg-32lf550a-400x400-imae8nyvxyjds3qu.jpeg",
+                    "https://m.media-amazon.com/images/I/81UNELrDc7L._SL1500_.jpg",
                     "tv_5"
                 )
             )
-            productMap["Television"] = tvList
-            productlist = ArrayList()
+            productMap["Jackets"] = tvList
 
-            // Vaccum Cleaner
-            productlist
-                .add(
-                    Product(
-                        "Easy Clean Plus Hand-held ",
-                        "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
-                        "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
-                        "2699",
-                        "10",
-                        "2566",
-                        "0",
-                        "http://img5a.flixcart.com/image/vacuum-cleaner/e/e/g/eureka-forbes-easy-clean-easy-clean-plus-400x400-imae7dam5ey3vaeb.jpeg",
-                        "v_cleaner_1"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Easy Clean Plus Hand-held ",
-                        "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
-                        "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
-                        "2699",
-                        "10",
-                        "2566",
-                        "0",
-                        "http://img6a.flixcart.com/image/vacuum-cleaner/j/e/x/nova-vc-761h-plus-vacuum-cleaner-400x400-imaecmhyadgxzzpg.jpeg",
-                        "v_cleaner_2"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Easy Clean Plus Hand-held ",
-                        "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
-                        "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
-                        "2699",
-                        "10",
-                        "2566",
-                        "0",
-                        "http://img6a.flixcart.com/image/vacuum-cleaner/y/g/b/eureka-forbes-car-clean-car-clean-400x400-imae376v2kta5utj.jpeg",
-                        "v_cleaner_3"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Easy Clean Plus Hand-held ",
-                        "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
-                        "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
-                        "2699",
-                        "10",
-                        "2566",
-                        "0",
-                        "http://img5a.flixcart.com/image/vacuum-cleaner/m/y/g/sarita-115-400x400-imae9b5zhzjagykx.jpeg",
-                        "v_cleaner_4"
-                    )
-                )
-            productlist
-                .add(
-                    Product(
-                        "Easy Clean Plus Hand-held ",
-                        "Eureka Forbes Easy Clean Plus Hand-held Vacuum Cleaner",
-                        "The Eureka Forbes Easy Clean vacuum cleaner is best for those who are looking for a machine that makes cleaning easier and is convenient to use. It is a compact and powerful machine with high suction and low power consumption.",
-                        "2699",
-                        "10",
-                        "2566",
-                        "0",
-                        "http://img6a.flixcart.com/image/vacuum-cleaner/s/c/j/eureka-forbes-trendy-steel-trendy-steel-400x400-imae7vashkfj2hgk.jpeg",
-                        "v_cleaner_5"
-                    )
-                )
-            productMap["Vaccum Cleaner"] = productlist
             CenterRepository.centerRepository!!.setMapOfProductsInCategory(productMap)
         }
 
@@ -582,10 +432,13 @@ class FakeWebServer {
         }
 
     fun getAllProducts(productCategory: Int) {
-        if (productCategory == 0) {
-            allElectronics
-        } else {
-            allFurnitures
+        when (productCategory) {
+            0 -> {
+                allElectronics
+            }
+            else -> {
+                allFurnitures
+            }
         }
     }
 
