@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.limerse.animations.Animations
@@ -15,7 +14,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.limerse.repurpose.R
 import com.limerse.repurpose.model.Token
-import com.limerse.repurpose.retrofit.RetrofitClient
+import com.limerse.repurpose.domain.api.RetrofitClient
 import com.limerse.repurpose.utils.sharedPrefFile
 import retrofit2.Call
 import retrofit2.Callback

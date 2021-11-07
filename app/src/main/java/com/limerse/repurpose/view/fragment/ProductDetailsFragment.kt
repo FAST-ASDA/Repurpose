@@ -29,14 +29,7 @@ import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import java.math.BigDecimal
 
-// TODO: Auto-generated Javadoc
-/**
- * Fragment that appears in the "content_frame", shows a animal.
- */
-class ProductDetailsFragment
-/**
- * Instantiates a new product details fragment.
- */(
+class ProductDetailsFragment(
     private val subcategoryKey: String?, private var productListNumber: Int,
     private val isFromCart: Boolean
 ) : Fragment() {

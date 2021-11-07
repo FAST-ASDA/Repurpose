@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.domain.mock
 
 import com.limerse.repurpose.model.CenterRepository
@@ -592,7 +591,6 @@ class FakeWebServer {
 
     companion object {
         private var fakeServer: FakeWebServer? = null
-        @JvmStatic
         val fakeWebServer: FakeWebServer?
             get() {
                 if (null == fakeServer) {

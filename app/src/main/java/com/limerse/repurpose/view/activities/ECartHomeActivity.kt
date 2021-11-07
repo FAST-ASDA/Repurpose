@@ -6,11 +6,9 @@ import android.view.*
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.limerse.repurpose.R
 import com.limerse.repurpose.domain.PaymentSheetViewModel
 import com.limerse.repurpose.domain.helper.Connectivity.isConnected
@@ -219,61 +217,10 @@ class ECartHomeActivity : AppCompatActivity() {
     }
 
     /*
-     * get total checkout amount
-     */
-    fun getCheckoutAmount(): BigDecimal {
-        return checkoutAmount
-    }
-
-    /*
      * Get Navigation drawer
      */
     fun getmDrawerLayout(): DrawerLayout? {
         return mDrawerLayout
-    }
-
-    private fun showPurchaseDialog() {
-        val exitScreenDialog = AlertDialog.Builder(this@ECartHomeActivity, R.style.PauseDialog)
-        exitScreenDialog.setTitle("Order Confirmation").setMessage("Would you like to place this order ?")
-        exitScreenDialog.setCancelable(true)
-        exitScreenDialog.setPositiveButton(
-            "Place Order"
-        ) { dialog, id -> //finish();
-            dialog.cancel()
-            val productId = ArrayList<String>()
-            for (productFromShoppingList in centerRepository!!.listOfProductsInShoppingList) {
-
-                //add product ids to array
-                productId.add(productFromShoppingList.productId)
-            }
-
-            //pass product id array to Apriori ALGO
-            centerRepository!!.addToItemSetList(HashSet(productId))
-
-            //clear all list item
-            centerRepository!!.listOfProductsInShoppingList.clear()
-            toggleBannerVisibility()
-            itemCount = 0
-            itemCountTextView!!.text = 0.toString()
-            checkoutAmount = BigDecimal(BigInteger.ZERO)
-            checkOutAmount!!.text = rupees(checkoutAmount).toString()
-        }
-        exitScreenDialog.setNegativeButton(
-            "Cancel"
-        ) { dialog, id -> dialog.cancel() }
-        exitScreenDialog.setOnDismissListener {
-            Snackbar.make(
-                this@ECartHomeActivity.window.decorView.findViewById(android.R.id.content),
-                "Order Placed Successfully, Happy Shopping !!",
-                Snackbar.LENGTH_LONG
-            )
-                .setAction("View Apriori Output") {
-
-                }
-                .show()
-        }
-        val alert11 = exitScreenDialog.create()
-        alert11.show()
     }
 
     companion object {

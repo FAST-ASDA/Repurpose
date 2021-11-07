@@ -40,10 +40,7 @@ class ProductListFragment : Fragment {
         if (isShoppingList) {
             view.findViewById<View>(R.id.slide_down).visibility = View.VISIBLE
             view.findViewById<View>(R.id.slide_down)
-                .setOnTouchListener { v, event -> //							Utils.switchContent(R.id.top_container,
-//									Utils.HOME_FRAGMENT,
-//									((ECartHomeActivity) (getContext())),
-//									AnimationType.SLIDE_DOWN);
+                .setOnTouchListener { v, event ->
                     switchFragmentWithAnimation(
                         R.id.frag_container,
                         HomeFragment(),
@@ -82,14 +79,7 @@ class ProductListFragment : Fragment {
         view.isFocusableInTouchMode = true
         view.requestFocus()
         view.setOnKeyListener { v, keyCode, event ->
-            if (event.action == KeyEvent.ACTION_UP
-                && keyCode == KeyEvent.KEYCODE_BACK
-            ) {
-
-//					Utils.switchContent(R.id.top_container,
-//							Utils.HOME_FRAGMENT,
-//							((ECartHomeActivity) (getContext())),
-//							AnimationType.SLIDE_UP);
+            if (event.action == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
                 switchFragmentWithAnimation(
                     R.id.frag_container,
                     HomeFragment(),

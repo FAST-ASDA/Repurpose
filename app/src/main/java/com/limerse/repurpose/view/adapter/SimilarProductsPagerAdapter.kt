@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.view.adapter
 
 import android.content.Context
@@ -120,35 +119,11 @@ class SimilarProductsPagerAdapter(
         return itemView
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * android.support.v4.view.PagerAdapter#destroyItem(android.view.ViewGroup,
-     * int, java.lang.Object)
-     */
     override fun destroyItem(container: ViewGroup, position: Int, `object`: Any) {
         container.removeView(`object` as FrameLayout)
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see android.support.v4.view.PagerAdapter#destroyItem(android.view.View,
-     * int, java.lang.Object)
-     */
-    override fun destroyItem(arg0: View, arg1: Int, arg2: Any) {
-        // TODO Auto-generated method stub
-    }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see android.support.v4.view.PagerAdapter#finishUpdate(android.view.View)
-     */
-    override fun finishUpdate(arg0: View) {
-        // TODO Auto-generated method stub
-    }
 
     /*
      * (non-Javadoc)
@@ -159,17 +134,6 @@ class SimilarProductsPagerAdapter(
      */
     override fun instantiateItem(arg0: View, arg1: Int): Any {
         return "null"
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * android.support.v4.view.PagerAdapter#restoreState(android.os.Parcelable,
-     * java.lang.ClassLoader)
-     */
-    override fun restoreState(arg0: Parcelable?, arg1: ClassLoader?) {
-        // TODO Auto-generated method stub
     }
 
     /*
@@ -190,14 +154,4 @@ class SimilarProductsPagerAdapter(
     override fun getPageWidth(position: Int): Float {
         return 0.5f
     }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see android.support.v4.view.PagerAdapter#startUpdate(android.view.View)
-     */
-    override fun startUpdate(arg0: View) {
-        // TODO Auto-generated method stub
-    }
-
 }

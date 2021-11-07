@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
-import com.limerse.repurpose.retrofit.RetrofitClient
+import com.limerse.repurpose.domain.api.RetrofitClient
 import com.stripe.android.paymentsheet.PaymentSheet
 import okhttp3.ResponseBody
 import retrofit2.Call

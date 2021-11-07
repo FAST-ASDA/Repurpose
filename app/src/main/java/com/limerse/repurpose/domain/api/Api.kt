@@ -1,4 +1,4 @@
-package com.limerse.repurpose.retrofit
+package com.limerse.repurpose.domain.api
 
 import com.limerse.repurpose.model.*
 import okhttp3.MultipartBody
