@@ -1,8 +1,3 @@
-
-/*
- *  The "‚‗‚" character is not a comma, it is the SINGLE LOW-9 QUOTATION MARK unicode 201A
- *  and unicode 2017 that are used for separating the items in a list.
- */
 package com.limerse.repurpose.util
 
 import android.content.Context
@@ -25,7 +20,6 @@ import java.lang.NullPointerException
 import java.lang.NumberFormatException
 import java.util.*
 
-//import com.google.gson.Gson;
 class TinyDB(appContext: Context?) {
     private val preferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
     private var DEFAULT_APP_IMAGEDATA_DIRECTORY: String? = null

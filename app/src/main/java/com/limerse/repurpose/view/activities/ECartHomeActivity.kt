@@ -93,7 +93,6 @@ class ECartHomeActivity : AppCompatActivity() {
         }
         findViewById<View>(R.id.checkout).setOnClickListener {
             vibrate(applicationContext)
-//            showPurchaseDialog()
             prepareCheckout { customerConfig, clientSecret ->
                 paymentSheet!!.presentWithPaymentIntent(
                     clientSecret,
@@ -101,9 +100,6 @@ class ECartHomeActivity : AppCompatActivity() {
                         merchantDisplayName = merchantName,
                         customer = customerConfig,
                         googlePay = googlePayConfig,
-                        // Set `allowsDelayedPaymentMethods` to true if your
-                        // business can handle payment methods that complete payment
-                        // after a delay, like SEPA Debit and Sofort.
                         allowsDelayedPaymentMethods = true
                     )
                 )
@@ -281,8 +277,6 @@ class ECartHomeActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val MINIMUM_SUPPORT = 0.1
-        private val TAG = ECartHomeActivity::class.java.simpleName
         const val merchantName = "REDALCK"
         const val backendUrl = "https://stripe-server-akshaaatt.herokuapp.com/checkout"
         val googlePayConfig = PaymentSheet.GooglePayConfiguration(
@@ -291,28 +285,21 @@ class ECartHomeActivity : AppCompatActivity() {
         )
     }
 
-    val viewModel: PaymentSheetViewModel by lazy {
+    private val viewModel: PaymentSheetViewModel by lazy {
         PaymentSheetViewModel(application)
     }
 
-    fun prepareCheckout(onSuccess: (PaymentSheet.CustomerConfiguration?, String) -> Unit) {
+    private fun prepareCheckout(onSuccess: (PaymentSheet.CustomerConfiguration?, String) -> Unit) {
         viewModel.prepareCheckout(backendUrl)
 
         viewModel.exampleCheckoutResponse.observe(this) { checkoutResponse ->
-            // Init PaymentConfiguration with the publishable key returned from the backend,
-            // which will be used on all Stripe API calls
             PaymentConfiguration.init(this, checkoutResponse.publishableKey)
-
-            onSuccess(
-                checkoutResponse.makeCustomerConfig(),
-                checkoutResponse.paymentIntent
-            )
-
+            onSuccess(checkoutResponse.makeCustomerConfig(), checkoutResponse.paymentIntent)
             viewModel.exampleCheckoutResponse.removeObservers(this)
         }
     }
 
-    fun onPaymentSheetResult(paymentResult: PaymentSheetResult) {
+    private fun onPaymentSheetResult(paymentResult: PaymentSheetResult) {
         viewModel.status.value = paymentResult.toString()
     }
 

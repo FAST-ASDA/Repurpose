@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.limerse.repurpose.R
 import com.limerse.repurpose.domain.api.ProductCategoryLoaderTask
@@ -20,16 +21,16 @@ import com.limerse.repurpose.util.Utils.switchFragmentWithAnimation
 import com.limerse.repurpose.view.activities.ECartHomeActivity
 
 class HomeFragment : Fragment() {
-    var mutedColor = R.attr.colorPrimary
     private var collapsingToolbar: CollapsingToolbarLayout? = null
+    private var appBarLayout: AppBarLayout? = null
     private var recyclerView: RecyclerView? = null
-
+    private var mutedColor = R.attr.colorPrimary
     /**
      * The double back to exit pressed once.
      */
     private var doubleBackToExitPressedOnce = false
     private val mRunnable = Runnable { doubleBackToExitPressedOnce = false }
-    private val mHandler: Handler? = Handler()
+    private val mHandler = Handler()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,10 +51,8 @@ class HomeFragment : Fragment() {
         toolbar.setNavigationOnClickListener {
             (activity as ECartHomeActivity?)!!.getmDrawerLayout()!!.openDrawer(GravityCompat.START)
         }
-        collapsingToolbar = view
-            .findViewById<View>(R.id.collapsing_toolbar) as CollapsingToolbarLayout
-        collapsingToolbar!!.title = "Repurpose"
-        val header = view.findViewById<View>(R.id.header) as ImageView
+        collapsingToolbar = view.findViewById<View>(R.id.collapsing_toolbar) as CollapsingToolbarLayout
+        appBarLayout = view.findViewById<View>(R.id.appbar) as AppBarLayout
         val bitmap = BitmapFactory.decodeResource(
             resources,
             R.drawable.nav_header_bg
@@ -63,6 +62,24 @@ class HomeFragment : Fragment() {
             collapsingToolbar!!.setContentScrimColor(mutedColor)
             collapsingToolbar!!.setStatusBarScrimColor(R.color.black_trans80)
         }
+        var isShow = true
+        var scrollRange = -1
+        appBarLayout!!.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { barLayout, verticalOffset ->
+            if (scrollRange == -1){
+                scrollRange = barLayout?.totalScrollRange!!
+            }
+            when {
+                scrollRange + verticalOffset == 0 -> {
+                    collapsingToolbar!!.title = "Repurpose"
+                    isShow = true
+                }
+                isShow -> {
+                    collapsingToolbar!!.title = " "
+                    isShow = false
+                }
+            }
+        })
+
         recyclerView = view.findViewById<View>(R.id.scrollableview) as RecyclerView
         recyclerView!!.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(
@@ -71,33 +88,6 @@ class HomeFragment : Fragment() {
         recyclerView!!.layoutManager = linearLayoutManager
         ProductCategoryLoaderTask(recyclerView, requireActivity()).execute()
 
-//
-//		if (simpleRecyclerAdapter == null) {
-//			simpleRecyclerAdapter = new CategoryListAdapter(getActivity());
-//			recyclerView.setAdapter(simpleRecyclerAdapter);
-//
-//			simpleRecyclerAdapter
-//					.SetOnItemClickListener(new OnItemClickListener() {
-//
-//						@Override
-//						public void onItemClick(View view, int position) {
-//
-//							if (position == 0) {
-//								CenterRepository.getCenterRepository()
-//										.getAllElectronics();
-//							} else if (position == 1) {
-//								CenterRepository.getCenterRepository()
-//										.getAllFurnitures();
-//							}
-//							Utils.switchFragmentWithAnimation(
-//									R.id.frag_container,
-//									new ProductOverviewFragment(),
-//									((ECartHomeActivity) getActivity()), null,
-//									AnimationType.SLIDE_LEFT);
-//
-//						}
-//					});
-//		}
         view.isFocusableInTouchMode = true
         view.requestFocus()
         view.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
@@ -106,7 +96,7 @@ class HomeFragment : Fragment() {
             ) {
                 if (doubleBackToExitPressedOnce) {
                     // super.onBackPressed();
-                    mHandler?.removeCallbacks(mRunnable)
+                    mHandler.removeCallbacks(mRunnable)
                     requireActivity().finish()
                     return@OnKeyListener true
                 }
@@ -116,7 +106,7 @@ class HomeFragment : Fragment() {
                     "Please click BACK again to exit",
                     Toast.LENGTH_SHORT
                 ).show()
-                mHandler!!.postDelayed(mRunnable, 2000)
+                mHandler.postDelayed(mRunnable, 2000)
             }
             true
         })

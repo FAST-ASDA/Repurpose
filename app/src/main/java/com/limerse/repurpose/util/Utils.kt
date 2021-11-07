@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.util
 
 import android.content.Context
@@ -48,101 +47,6 @@ object Utils {
         ).toInt()
     }
 
-    //
-    //	public static Map<String, Integer> buildEffectMap(Context context) {
-    //		Map<String, Integer> effectMap = new LinkedHashMap<>();
-    //		int i = 0;
-    //		String[] effects = context.getResources().getStringArray(
-    //				R.array.jazzy_effects);
-    //		for (String effect : effects) {
-    //			effectMap.put(effect, i++);
-    //		}
-    //		return effectMap;
-    //	}
-    //	public static PageTransformer currentPageTransformer(Context context) {
-    //		PageTransformer transformer = null;
-    //
-    //		switch (PreferenceHelper.getPrefernceHelperInstace().getInteger(
-    //				context, AppConstants.VIEW_PAGER_ANIME, 13)) {
-    //		case AppConstants.STANDARD:
-    //
-    //			transformer = new DefaultTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.TABLET:
-    //
-    //			transformer = new TabletTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.CUBEIN:
-    //
-    //			transformer = new CubeInTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.CUBEOUT:
-    //
-    //			transformer = new CubeOutTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.FLIPVERTICAL:
-    //
-    //			transformer = new FlipVerticalTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.FLIPHORIZONTAL:
-    //
-    //			transformer = new FlipHorizontalTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.STACK:
-    //
-    //			transformer = new StackTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.ZOOMIN:
-    //
-    //			transformer = new ZoomInTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.ZOOMOUT:
-    //
-    //			transformer = new ZoomOutTranformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.ROTATEUP:
-    //
-    //			transformer = new RotateUpTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.ROTATEDOWN:
-    //
-    //			transformer = new RotateDownTransformer();
-    //
-    //			break;
-    //
-    //		case AppConstants.ACCORDION:
-    //
-    //			transformer = new AccordionTransformer();
-    //
-    //			break;
-    //
-    //		default:
-    //
-    //			transformer = new CubeOutTransformer();
-    //			break;
-    //		}
-    //		return transformer;
-    //	}
     fun tintMyDrawable(drawable: Drawable?, color: Int): Drawable? {
         var drawable = drawable
         drawable = DrawableCompat.wrap(drawable!!)

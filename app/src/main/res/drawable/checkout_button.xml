@@ -3,12 +3,12 @@
     android:shape="rectangle">
 
     <!-- view background color -->
-    <solid android:color="#03A14D" />
+    <solid android:color="@color/light_blue" />
 
     <!-- view border color and width -->
     <stroke
         android:width="0dp"
-        android:color="@color/holo_green_dark" />
+        android:color="@color/indigo" />
 
     <!-- Here is the corner radius -->
     <corners

@@ -1,4 +1,3 @@
-
 package com.limerse.repurpose.domain.helper
 
 import android.content.Context
@@ -34,9 +33,8 @@ object Connectivity {
      * @return
      */
     fun getNetworkInfo(context: Context): NetworkInfo? {
-        val cm = context
-            .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        return if (null != cm) cm.activeNetworkInfo else null
+        val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        return cm.activeNetworkInfo
     }
 
     /**
@@ -308,8 +306,8 @@ object Connectivity {
             val Mbit = Kbit * 1024
             val Gbit = Mbit * 1024
             if (bytes < Kbit) return "$bytes Byte"
-            if (bytes > Kbit && bytes < Mbit) return (bytes / Kbit).toString() + " KiloByte"
-            if (bytes > Mbit && bytes < Gbit) return (bytes / Mbit).toString() + " MegaByte"
+            if (bytes in (Kbit + 1) until Mbit) return (bytes / Kbit).toString() + " KiloByte"
+            if (bytes in (Mbit + 1) until Gbit) return (bytes / Mbit).toString() + " MegaByte"
             if (bytes > Gbit) (bytes / Gbit).toString() + " GigaByte" else "???"
         }
     }

@@ -61,8 +61,4 @@ class ProductCategoryLoaderTask(
         fakeWebServer!!.addCategory()
         return null
     }
-
-    companion object {
-        private val NUMBER_OF_COLUMNS = 2
-    }
 }
