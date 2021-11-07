@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:checked="true"
+        android:icon="@drawable/ic_action_search"
+        android:title="Home" />
+    <item
+        android:id="@+id/my_cart"
+        android:icon="@drawable/cart"
+        android:title="My Cart" />
+    <item
+        android:id="@+id/contact_us"
+        android:icon="@android:drawable/ic_menu_call"
+        android:title="Contact US" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="Settings" />
+
+</menu>

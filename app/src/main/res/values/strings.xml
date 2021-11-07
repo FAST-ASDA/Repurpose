@@ -1,0 +1,28 @@
+<resources>
+
+    <string name="app_name">Repurpose</string>
+    <string name="action_settings">Settings</string>
+    <string name="empty_text">Select song from below to play</string>
+    <string name="standard">Standard</string>
+    <string name="title_changelog">Change log</string>
+    <string name="changelog_close">Close</string>
+    <string name="action_hide">Hide Panel</string>
+    <string name="action_show">Show Panel</string>
+    <string name="action_anchor_enable">Enable Anchor Point</string>
+    <string name="action_anchor_disable">Disable Anchor Point</string>
+    <string name="idle">Idle</string>
+    <string name="crash_toast_text">Oops Crashe Occurred</string>
+    <string name="offer_banner">"Shop for 2000 to get Rs 100 discount and shop for 3000 to get Rs 200 discount"</string>
+    <string name="checkout">CheckOut</string>
+    <string name="similar_product">You may also like</string>
+    <string name="slogan">Assignment</string>
+    <string name="email_developer_">Email Developer:</string>
+    <string name="personal_website_">Personal Website :</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="myntra">By Myntra</string>
+    <string name="site_myntra">www.myntra.com</string>
+    <string name="mob_num">8178215331</string>
+    <string name="lab_locations">Delhi Technological University, DTU, New Delhi, India</string>
+    <string name="delhi">Delhi</string>
+
+</resources>
