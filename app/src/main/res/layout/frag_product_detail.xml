@@ -52,7 +52,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_margin="5dp"
-
             android:ellipsize="marquee"
             android:focusable="true"
             android:focusableInTouchMode="true"
@@ -61,7 +60,6 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:scrollHorizontally="true"
             android:singleLine="true"
-
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -76,7 +74,6 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:freezesText="true"
-
             android:textSize="16sp" />
 
         <LinearLayout
@@ -87,17 +84,6 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/remove_item"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@color/red"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="-"
-                android:textSize="20sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/iteam_amount"
@@ -115,19 +101,10 @@
                 android:minWidth="70dp"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:text="0"
+                android:textColor="@color/white"
+                android:text="Add to cart"
                 android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/add_item"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_gravity="center_vertical|center_horizontal"
-                android:background="@color/holo_green_light"
-                android:gravity="center_vertical|center_horizontal"
-                android:text="+"
-                android:textSize="30sp"
-                android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
