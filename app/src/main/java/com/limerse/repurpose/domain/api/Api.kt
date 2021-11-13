@@ -15,7 +15,7 @@ interface Api {
         @Field("lastName") lastName: String,
         @Field("email") email: String,
         @Field("googleId") googleId: String,
-    ):Call<Token>
+    ):Call<Data>
 
     //Add a Product
     @FormUrlEncoded

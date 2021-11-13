@@ -204,7 +204,7 @@ class ECartHomeActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val merchantName = "REDALCK"
+        const val merchantName = "REPURPOSE"
         const val backendUrl = "https://stripe-server-akshaaatt.herokuapp.com/checkout"
         val googlePayConfig = PaymentSheet.GooglePayConfiguration(
             environment = PaymentSheet.GooglePayConfiguration.Environment.Test,

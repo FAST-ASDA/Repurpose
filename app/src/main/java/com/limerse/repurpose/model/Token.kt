@@ -4,7 +4,10 @@ import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
 @Keep
-data class Token(@SerializedName("token") val token: String)
+data class UserCredentials(
+    @SerializedName("token") val token: String,
+    @SerializedName("userId") val userId: String
+)
 
 
 

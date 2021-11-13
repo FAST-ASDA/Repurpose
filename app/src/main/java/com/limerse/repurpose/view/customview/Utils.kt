@@ -1,4 +1,4 @@
-package com.limerse.repurpose.utils
+package com.limerse.repurpose.view.customview
 
 import android.app.Activity
 import android.content.ContentResolver

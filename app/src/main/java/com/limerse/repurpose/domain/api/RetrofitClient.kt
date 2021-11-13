@@ -1,6 +1,6 @@
 package com.limerse.repurpose.domain.api
 
-import com.limerse.repurpose.utils.BASE_URL
+import com.limerse.repurpose.view.customview.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

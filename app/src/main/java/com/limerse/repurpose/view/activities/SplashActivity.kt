@@ -13,9 +13,9 @@ import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.limerse.repurpose.R
-import com.limerse.repurpose.model.Token
 import com.limerse.repurpose.domain.api.RetrofitClient
-import com.limerse.repurpose.utils.sharedPrefFile
+import com.limerse.repurpose.model.Data
+import com.limerse.repurpose.view.customview.sharedPrefFile
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -82,19 +82,16 @@ class SplashActivity : AppCompatActivity() {
                     result.signInAccount?.email!!,
                     result.signInAccount!!.idToken!!
                 )
-                .enqueue(object: Callback<Token> {
-                    override fun onFailure(call: Call<Token>, t: Throwable) {
+                .enqueue(object: Callback<Data> {
+                    override fun onFailure(call: Call<Data>, t: Throwable) {
                         Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
                     }
 
-                    override fun onResponse(call: Call<Token>, response: Response<Token>) {
-                        println(response.message())
-                        sharedPreferences.edit().putString("token",response.body()?.token).apply()
+                    override fun onResponse(call: Call<Data>, response: Response<Data>) {
+                        sharedPreferences.edit().putString("token",response.body()?.data?.token).apply()
                         checkLogin()
                     }
                 })
-            sharedPreferences.edit().putString("token","abc").apply()
-            checkLogin()
         }
     }
 
