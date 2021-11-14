@@ -168,7 +168,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.limerse.repurpose.view.customview.ClickableViewPager
+        <com.myntra.repurpose.view.customview.ClickableViewPager
             android:id="@+id/top_selleing_pager"
             android:layout_width="match_parent"
             android:layout_height="380dp"
